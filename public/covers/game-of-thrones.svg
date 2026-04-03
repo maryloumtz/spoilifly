@@ -1,0 +1,17 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1600" fill="#0D1117"/>
+  <rect x="72" y="72" width="1056" height="1456" rx="32" fill="url(#bg)"/>
+  <circle cx="886" cy="348" r="188" fill="#C9D1D9" fill-opacity="0.16"/>
+  <path d="M310 280L431 787L603 521L710 900L817 587L901 824" stroke="#D0D7DE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="150" y="980" fill="#E6EDF3" font-size="108" font-family="Georgia, serif" font-weight="700">GAME OF</text>
+  <text x="150" y="1108" fill="#E6EDF3" font-size="108" font-family="Georgia, serif" font-weight="700">THRONES</text>
+  <text x="150" y="1236" fill="#AAB7C4" font-size="42" font-family="Arial, sans-serif">Fantasy • Guerre • Dynastie</text>
+  <path d="M150 1320H1050" stroke="#8B949E" stroke-width="2"/>
+  <text x="150" y="1390" fill="#8B949E" font-size="30" font-family="Arial, sans-serif" letter-spacing="9">WINTERFELL / KING'S LANDING / THE WALL</text>
+  <defs>
+    <linearGradient id="bg" x1="190" y1="116" x2="974" y2="1528" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B2430"/>
+      <stop offset="1" stop-color="#11161C"/>
+    </linearGradient>
+  </defs>
+</svg>

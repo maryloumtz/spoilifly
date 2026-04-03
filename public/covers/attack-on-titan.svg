@@ -1,0 +1,18 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1600" fill="#111827"/>
+  <rect x="72" y="72" width="1056" height="1456" rx="32" fill="url(#bg)"/>
+  <rect x="194" y="220" width="812" height="704" rx="26" fill="#1F2937"/>
+  <path d="M302 840V348H452V840" stroke="#CBD5E1" stroke-width="18"/>
+  <path d="M744 840V348H894V840" stroke="#CBD5E1" stroke-width="18"/>
+  <path d="M452 348H744" stroke="#CBD5E1" stroke-width="18"/>
+  <path d="M564 1018C657 936 741 930 816 998C900 1075 894 1171 788 1224C693 1272 558 1252 475 1184" stroke="#EF4444" stroke-width="16" stroke-linecap="round"/>
+  <text x="150" y="1088" fill="#F8FAFC" font-size="96" font-family="Arial, sans-serif" font-weight="700">ATTACK ON</text>
+  <text x="150" y="1198" fill="#F8FAFC" font-size="96" font-family="Arial, sans-serif" font-weight="700">TITAN</text>
+  <text x="150" y="1306" fill="#FCA5A5" font-size="42" font-family="Arial, sans-serif">Anime • Guerre • Révélation</text>
+  <defs>
+    <linearGradient id="bg" x1="129" y1="100" x2="1082" y2="1508" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#374151"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+</svg>

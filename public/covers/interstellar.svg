@@ -1,0 +1,25 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1600" fill="#020617"/>
+  <rect x="72" y="72" width="1056" height="1456" rx="32" fill="url(#bg)"/>
+  <circle cx="600" cy="474" r="228" fill="url(#ring)"/>
+  <circle cx="600" cy="474" r="112" fill="#020617"/>
+  <path d="M426 777L614 598L735 877" stroke="#E2E8F0" stroke-width="16" stroke-linecap="round"/>
+  <path d="M600 232L640 172" stroke="#E2E8F0" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="252" cy="236" r="4" fill="#E2E8F0"/>
+  <circle cx="940" cy="324" r="4" fill="#E2E8F0"/>
+  <circle cx="360" cy="670" r="4" fill="#E2E8F0"/>
+  <circle cx="958" cy="618" r="4" fill="#E2E8F0"/>
+  <text x="150" y="1025" fill="#F8FAFC" font-size="118" font-family="Arial, sans-serif" font-weight="700">INTERSTELLAR</text>
+  <text x="150" y="1148" fill="#93C5FD" font-size="42" font-family="Arial, sans-serif">Science-fiction • Temps • Espace</text>
+  <defs>
+    <linearGradient id="bg" x1="118" y1="86" x2="1082" y2="1514" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="372" y1="474" x2="828" y2="474" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC" stop-opacity="0.96"/>
+      <stop offset="0.5" stop-color="#94A3B8" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#F8FAFC" stop-opacity="0.96"/>
+    </linearGradient>
+  </defs>
+</svg>

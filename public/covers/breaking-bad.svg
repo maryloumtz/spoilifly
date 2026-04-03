@@ -1,0 +1,19 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1600" fill="#0B1A12"/>
+  <rect x="72" y="72" width="1056" height="1456" rx="32" fill="url(#bg)"/>
+  <rect x="152" y="210" width="896" height="520" rx="28" fill="#13271D"/>
+  <rect x="206" y="266" width="186" height="186" rx="22" fill="#7AF06C"/>
+  <text x="238" y="385" fill="#0B1A12" font-size="126" font-family="Arial, sans-serif" font-weight="700">Br</text>
+  <rect x="418" y="266" width="186" height="186" rx="22" fill="#A2FF97"/>
+  <text x="457" y="385" fill="#0B1A12" font-size="126" font-family="Arial, sans-serif" font-weight="700">Ba</text>
+  <text x="152" y="865" fill="#D9F6D0" font-size="120" font-family="Arial, sans-serif" font-weight="700">BREAKING</text>
+  <text x="152" y="990" fill="#D9F6D0" font-size="120" font-family="Arial, sans-serif" font-weight="700">BAD</text>
+  <text x="152" y="1118" fill="#9BC5A1" font-size="42" font-family="Arial, sans-serif">Crime • Famille • Chute</text>
+  <path d="M151 1258C295 1155 421 1122 529 1160C662 1206 722 1331 860 1350C941 1361 1003 1336 1049 1307" stroke="#7AF06C" stroke-width="14" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="bg" x1="88" y1="132" x2="1080" y2="1501" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#143321"/>
+      <stop offset="1" stop-color="#09130D"/>
+    </linearGradient>
+  </defs>
+</svg>

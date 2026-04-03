@@ -1,0 +1,16 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1600" fill="#2B1608"/>
+  <rect x="72" y="72" width="1056" height="1456" rx="32" fill="url(#bg)"/>
+  <circle cx="868" cy="352" r="150" fill="#FCD34D" fill-opacity="0.9"/>
+  <path d="M150 884C314 739 491 688 681 730C850 767 973 857 1050 942V1528H150V884Z" fill="#EAB308" fill-opacity="0.18"/>
+  <path d="M150 1016C343 874 525 837 696 876C851 911 970 990 1050 1074V1528H150V1016Z" fill="#F59E0B" fill-opacity="0.26"/>
+  <path d="M150 1140C326 1012 496 988 661 1018C829 1049 959 1119 1050 1200V1528H150V1140Z" fill="#FDE68A" fill-opacity="0.34"/>
+  <text x="150" y="1080" fill="#FEF3C7" font-size="154" font-family="Arial, sans-serif" font-weight="700">DUNE</text>
+  <text x="150" y="1196" fill="#FDE68A" font-size="42" font-family="Arial, sans-serif">Livre • Prophétie • Guerre du désert</text>
+  <defs>
+    <linearGradient id="bg" x1="123" y1="94" x2="1076" y2="1500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5B2C0D"/>
+      <stop offset="1" stop-color="#2A1308"/>
+    </linearGradient>
+  </defs>
+</svg>

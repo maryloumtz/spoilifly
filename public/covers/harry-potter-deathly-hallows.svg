@@ -1,0 +1,17 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1600" fill="#120B19"/>
+  <rect x="72" y="72" width="1056" height="1456" rx="32" fill="url(#bg)"/>
+  <path d="M600 254L790 670H410L600 254Z" stroke="#E9D5FF" stroke-width="18"/>
+  <circle cx="600" cy="574" r="108" stroke="#FDE68A" stroke-width="18"/>
+  <path d="M600 470V1080" stroke="#FDE68A" stroke-width="18"/>
+  <path d="M346 920C470 835 554 805 600 805C646 805 730 835 854 920" stroke="#A78BFA" stroke-width="14" stroke-linecap="round"/>
+  <text x="150" y="1088" fill="#FAF5FF" font-size="86" font-family="Georgia, serif" font-weight="700">HARRY POTTER</text>
+  <text x="150" y="1192" fill="#FAF5FF" font-size="72" font-family="Georgia, serif" font-weight="700">DEATHLY HALLOWS</text>
+  <text x="150" y="1302" fill="#D8B4FE" font-size="42" font-family="Arial, sans-serif">Fantasy • Magie • Dernier combat</text>
+  <defs>
+    <linearGradient id="bg" x1="134" y1="96" x2="1044" y2="1514" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A163B"/>
+      <stop offset="1" stop-color="#140B1F"/>
+    </linearGradient>
+  </defs>
+</svg>
