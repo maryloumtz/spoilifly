@@ -87,8 +87,15 @@ export interface PurchaseHistoryItem {
   createdAt: string;
 }
 
+export interface ApiAuthPayload {
+  accessToken: string;
+  tokenType: "Bearer";
+  expiresIn: number;
+}
+
 export interface SessionPayload {
   user: SessionUser | null;
+  auth?: ApiAuthPayload | null;
 }
 
 export interface ProfilePayload {

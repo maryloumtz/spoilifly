@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { NextResponse } from "next/server";
 import type { Profile, SessionUser, User } from "@/models/domain";
 import type { LoginInput, ProfileInput, RegisterInput } from "@/models/forms";
@@ -8,11 +8,20 @@ import { validateLogin, validateProfile, validateRegister } from "@/services/ser
 
 const SESSION_COOKIE = "spoilifly_session";
 const SESSION_SECRET = process.env.SESSION_SECRET || "spoilifly-dev-secret";
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || SESSION_SECRET;
+const ACCESS_TOKEN_TTL_SECONDS = 60 * 60 * 24 * 30;
 
 interface SessionToken {
   userId: string;
   role: User["role"];
   issuedAt: string;
+}
+
+interface AccessToken {
+  userId: string;
+  role: User["role"];
+  issuedAt: string;
+  expiresAt: string;
 }
 
 function encodeSession(token: SessionToken): string {
@@ -37,6 +46,45 @@ function decodeSession(value: string | undefined): SessionToken | null {
   }
 }
 
+function encodeAccessToken(token: AccessToken): string {
+  const payload = Buffer.from(JSON.stringify(token)).toString("base64url");
+  return `${payload}.${signValue(payload, ACCESS_TOKEN_SECRET)}`;
+}
+
+function decodeAccessToken(value: string | null): AccessToken | null {
+  if (!value) {
+    return null;
+  }
+
+  const [payload, signature] = value.split(".");
+  if (!payload || !signature || signValue(payload, ACCESS_TOKEN_SECRET) !== signature) {
+    return null;
+  }
+
+  try {
+    const token = JSON.parse(Buffer.from(payload, "base64url").toString("utf8")) as AccessToken;
+    if (!token.expiresAt || new Date(token.expiresAt).getTime() <= Date.now()) {
+      return null;
+    }
+    return token;
+  } catch {
+    return null;
+  }
+}
+
+function extractBearerToken(authorizationHeader: string | null): string | null {
+  if (!authorizationHeader) {
+    return null;
+  }
+
+  const [scheme, token] = authorizationHeader.split(" ");
+  if (!scheme || !token || scheme.toLowerCase() !== "bearer") {
+    return null;
+  }
+
+  return token;
+}
+
 function toSessionUser(user: User, profile: Profile): SessionUser {
   return {
     id: user.id,
@@ -47,23 +95,65 @@ function toSessionUser(user: User, profile: Profile): SessionUser {
   };
 }
 
-export async function getSessionUser(): Promise<SessionUser | null> {
-  const cookieStore = await cookies();
-  const token = decodeSession(cookieStore.get(SESSION_COOKIE)?.value);
-
-  if (!token) {
-    return null;
-  }
-
+async function resolveSessionUser(userId: string): Promise<SessionUser | null> {
   const db = await readDatabase();
-  const user = db.users.find((entry) => entry.id === token.userId);
-  const profile = db.profiles.find((entry) => entry.userId === token.userId);
+  const user = db.users.find((entry) => entry.id === userId);
+  const profile = db.profiles.find((entry) => entry.userId === userId);
 
   if (!user || !profile) {
     return null;
   }
 
   return toSessionUser(user, profile);
+}
+
+async function getAuthorizationHeader(request?: Request): Promise<string | null> {
+  if (request) {
+    return request.headers.get("authorization");
+  }
+
+  const headerStore = await headers();
+  return headerStore.get("authorization");
+}
+
+export function createAccessToken(user: SessionUser): string {
+  const issuedAt = new Date();
+  const expiresAt = new Date(issuedAt.getTime() + ACCESS_TOKEN_TTL_SECONDS * 1000);
+
+  return encodeAccessToken({
+    userId: user.id,
+    role: user.role,
+    issuedAt: issuedAt.toISOString(),
+    expiresAt: expiresAt.toISOString(),
+  });
+}
+
+export function getAuthPayload(user: SessionUser) {
+  return {
+    user,
+    auth: {
+      accessToken: createAccessToken(user),
+      tokenType: "Bearer" as const,
+      expiresIn: ACCESS_TOKEN_TTL_SECONDS,
+    },
+  };
+}
+
+export async function getSessionUser(request?: Request): Promise<SessionUser | null> {
+  const authorizationHeader = await getAuthorizationHeader(request);
+
+  if (authorizationHeader) {
+    const token = decodeAccessToken(extractBearerToken(authorizationHeader));
+    if (!token) {
+      return null;
+    }
+
+    return resolveSessionUser(token.userId);
+  }
+
+  const cookieStore = await cookies();
+  const token = decodeSession(cookieStore.get(SESSION_COOKIE)?.value);
+  return token ? resolveSessionUser(token.userId) : null;
 }
 
 export function applySessionCookie(response: NextResponse, user: SessionUser): void {
@@ -90,8 +180,8 @@ export function clearSessionCookie(response: NextResponse): void {
   });
 }
 
-export async function requireSessionUser() {
-  const sessionUser = await getSessionUser();
+export async function requireSessionUser(request?: Request) {
+  const sessionUser = await getSessionUser(request);
 
   if (!sessionUser) {
     return { error: NextResponse.json({ error: "Authentification requise." }, { status: 401 }) };
@@ -100,8 +190,8 @@ export async function requireSessionUser() {
   return { user: sessionUser };
 }
 
-export async function requireAdminUser() {
-  const result = await requireSessionUser();
+export async function requireAdminUser(request?: Request) {
+  const result = await requireSessionUser(request);
 
   if ("error" in result) {
     return result;

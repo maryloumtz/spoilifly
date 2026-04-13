@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { applySessionCookie, registerUser } from "@/services/server/auth";
+import { applySessionCookie, getAuthPayload, registerUser } from "@/services/server/auth";
 import { jsonError } from "@/services/server/http";
 
 export async function POST(request: Request) {
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     return jsonError("Validation impossible.", 400, result.error);
   }
 
-  const response = NextResponse.json({ user: result.user });
+  const response = NextResponse.json(getAuthPayload(result.user));
   applySessionCookie(response, result.user);
   return response;
 }

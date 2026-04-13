@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { applySessionCookie, loginUser } from "@/services/server/auth";
+import { applySessionCookie, getAuthPayload, loginUser } from "@/services/server/auth";
 import { jsonError } from "@/services/server/http";
 
 export async function POST(request: Request) {
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     return jsonError("Connexion impossible.", 400, result.error);
   }
 
-  const response = NextResponse.json({ user: result.user });
+  const response = NextResponse.json(getAuthPayload(result.user));
   applySessionCookie(response, result.user);
   return response;
 }

@@ -41,6 +41,20 @@ function getRole(request: NextRequest): string | null {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const isApiRoute = pathname.startsWith("/api/");
+
+  if (isApiRoute && request.method === "OPTIONS") {
+    return new NextResponse(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+        "Access-Control-Max-Age": "86400",
+      },
+    });
+  }
+
   const requiresAuth = ["/profile", "/library", "/cart", "/checkout/success", "/checkout/simulated-stripe", "/creator", "/messages", "/meetings"].some(
     (prefix) => pathname.startsWith(prefix),
   );
@@ -67,5 +81,15 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/library/:path*", "/cart/:path*", "/checkout/:path*", "/admin/:path*", "/creator/:path*", "/messages/:path*", "/meetings/:path*"],
+  matcher: [
+    "/api/:path*",
+    "/profile/:path*",
+    "/library/:path*",
+    "/cart/:path*",
+    "/checkout/:path*",
+    "/admin/:path*",
+    "/creator/:path*",
+    "/messages/:path*",
+    "/meetings/:path*",
+  ],
 };

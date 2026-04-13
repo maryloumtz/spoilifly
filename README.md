@@ -12,7 +12,7 @@ Spoilifly est une application de découverte et de monétisation de spoilers pre
 - TypeScript
 - Tailwind CSS v4
 - Backend interne via routes `src/app/api`
-- Stockage local JSON via `data/spoilifly-db.json`
+- Persistance Postgres via Vercel Marketplace avec fallback JSON local en développement  
 
 ## Architecture
 
@@ -102,12 +102,46 @@ Spoilifly est une application de découverte et de monétisation de spoilers pre
 
 ## API interne
 
+Une fois déployée sur Vercel, l'API est accessible via l'URL publique du projet :
+
+- `https://votre-projet.vercel.app/api/...`
+
+L'application web Next.js continue d'utiliser le cookie de session, mais l'API expose aussi un token `Bearer` pour un client externe comme Flutter.
+
 ### Authentification
 
 - `POST /api/auth/register`
 - `POST /api/auth/login`
 - `POST /api/auth/logout`
 - `GET /api/auth/me`
+
+Réponse `login` / `register` / `me` quand l'utilisateur est authentifié :
+
+```json
+{
+  "user": {
+    "id": "user-123",
+    "email": "demo@example.com",
+    "role": "user",
+    "displayName": "Demo",
+    "avatarUrl": null
+  },
+  "auth": {
+    "accessToken": "ey...",
+    "tokenType": "Bearer",
+    "expiresIn": 2592000
+  }
+}
+```
+
+Pour Flutter, il faut stocker `auth.accessToken` puis envoyer :
+
+```http
+Authorization: Bearer <accessToken>
+Content-Type: application/json
+```
+
+Les routes `/api/*` exposent maintenant les en-têtes CORS nécessaires pour un client externe, y compris pour les requêtes préflight `OPTIONS`.
 
 ### Catalogue et contenu
 
@@ -187,13 +221,14 @@ Le provider global [src/viewmodels/useAppVM.tsx](/home/marti/Documents/Developpe
 - le calcul du total panier
 - les actions `addToCart`, `removeFromCart`, `clearCart`, `logoutUser`
 
-### Backend mocké
+### Persistance
 
-La base locale est gérée dans [src/services/server/db.ts](/home/marti/Documents/DeveloppementProject/spoilifly/src/services/server/db.ts).
+La couche de persistance est gérée dans [src/services/server/db.ts](/home/marti/Documents/DeveloppementProject/spoilifly/src/services/server/db.ts).
 
-- initialisation automatique depuis le seed
-- lecture / écriture JSON
-- persistance locale entre redémarrages
+- si `DATABASE_URL` ou `POSTGRES_URL` est défini, l'application utilise Postgres
+- sinon, l'application retombe sur `data/spoilifly-db.json`
+- au premier démarrage avec Postgres, la table `app_state` est créée automatiquement
+- les données locales existantes sont importées automatiquement si le fichier JSON est présent
 
 Les données de démonstration sont dans [src/services/server/seed.ts](/home/marti/Documents/DeveloppementProject/spoilifly/src/services/server/seed.ts).
 
@@ -244,6 +279,16 @@ npm run dev
 
 Puis ouvrir `http://localhost:3001`.
 
+## Configuration Postgres sur Vercel
+
+1. Dans Vercel, ouvre le projet.
+2. Ajoute une intégration Postgres au projet depuis le Marketplace.
+3. Vérifie que Vercel injecte `DATABASE_URL` ou `POSTGRES_URL`.
+4. Ajoute aussi `SESSION_SECRET` et `ACCESS_TOKEN_SECRET`.
+5. Redéploie.
+
+Tu peux partir de [.env.example](/home/marti/Documents/DeveloppementProject/spoilifly/.env.example) pour ton environnement local.
+
 ## Vérification
 
 ```bash
@@ -253,7 +298,7 @@ npm run lint
 
 ## Notes
 
-- le projet utilise un backend mocké local, il n'y a pas de base externe requise
+- le projet peut fonctionner avec Vercel Postgres ou avec le fallback JSON local
 - le panier est persistant côté navigateur
 - l'authentification repose sur un cookie signé
 - le paiement est simulé localement pour les besoins de la démo

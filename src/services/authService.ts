@@ -7,11 +7,11 @@ export function fetchSession() {
 }
 
 export function login(payload: { email: string; password: string }) {
-  return apiSend<{ user: SessionPayload["user"] }>("/api/auth/login", "POST", payload);
+  return apiSend<SessionPayload>("/api/auth/login", "POST", payload);
 }
 
 export function register(payload: RegisterInput) {
-  return apiSend<{ user: SessionPayload["user"] }>("/api/auth/register", "POST", payload);
+  return apiSend<SessionPayload>("/api/auth/register", "POST", payload);
 }
 
 export function logout() {
