@@ -19,6 +19,18 @@ function isPostgresEnabled(): boolean {
   return Boolean(getConnectionString());
 }
 
+function isReadOnlyDeployment(): boolean {
+  return process.env.VERCEL === "1" || process.env.NODE_ENV === "production";
+}
+
+function assertWritableLocalFallback(): void {
+  if (isReadOnlyDeployment() && !isPostgresEnabled()) {
+    throw new Error(
+      "Base de donnees non configuree en production. Definis DATABASE_URL ou POSTGRES_URL avec ta connexion Postgres Supabase dans Vercel.",
+    );
+  }
+}
+
 function getPool(): Pool {
   if (!pool) {
     const connectionString = getConnectionString();
@@ -166,12 +178,14 @@ async function writePostgresDatabase(db: DatabaseSchema): Promise<void> {
 }
 
 async function readFileDatabase(): Promise<DatabaseSchema> {
+  assertWritableLocalFallback();
   await ensureLocalDatabaseFile();
   const content = await fs.readFile(DB_PATH, "utf8");
   return normalizeDatabase(JSON.parse(content) as Partial<DatabaseSchema>);
 }
 
 async function writeFileDatabase(db: DatabaseSchema): Promise<void> {
+  assertWritableLocalFallback();
   await ensureLocalDatabaseFile();
   await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), "utf8");
 }
