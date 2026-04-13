@@ -15,6 +15,24 @@ function getConnectionString(): string | null {
   return process.env.DATABASE_URL || process.env.POSTGRES_URL || null;
 }
 
+function getSanitizedConnectionString(): string | null {
+  const connectionString = getConnectionString();
+  if (!connectionString) {
+    return null;
+  }
+
+  const url = new URL(connectionString);
+
+  // pg drops explicit ssl options when sslmode/sslcert/... are present in the URL.
+  url.searchParams.delete("sslmode");
+  url.searchParams.delete("sslcert");
+  url.searchParams.delete("sslkey");
+  url.searchParams.delete("sslrootcert");
+  url.searchParams.delete("uselibpqcompat");
+
+  return url.toString();
+}
+
 function isPostgresEnabled(): boolean {
   return Boolean(getConnectionString());
 }
@@ -33,14 +51,18 @@ function assertWritableLocalFallback(): void {
 
 function getPool(): Pool {
   if (!pool) {
-    const connectionString = getConnectionString();
+    const connectionString = getSanitizedConnectionString();
     if (!connectionString) {
       throw new Error("DATABASE_URL ou POSTGRES_URL est requis pour utiliser Postgres.");
     }
 
     pool = new Pool({
       connectionString,
-      ssl: connectionString.includes("localhost") ? false : { rejectUnauthorized: false },
+      ssl: connectionString.includes("localhost")
+        ? false
+        : {
+            rejectUnauthorized: false,
+          },
     });
   }
 
