@@ -25,12 +25,68 @@
       "updatedAt": "2026-03-13T09:00:00.000Z"
     },
     {
+      "id": "user-ava",
+      "email": "ava@spoilifly.local",
+      "passwordHash": "pbkdf2$120000$30d4953b72d2bbeade65b81aa9715e84$0448be867757af0fd79b8e291c6b6e5f9ee058c43a5708edf2b68364b830e07aa972ae00afdf48598fd7faba89ff84bee3d16b510a565d2454d4744b143c7bbe",
+      "role": "user",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "id": "user-milo",
+      "email": "milo@spoilifly.local",
+      "passwordHash": "pbkdf2$120000$30d4953b72d2bbeade65b81aa9715e84$0448be867757af0fd79b8e291c6b6e5f9ee058c43a5708edf2b68364b830e07aa972ae00afdf48598fd7faba89ff84bee3d16b510a565d2454d4744b143c7bbe",
+      "role": "user",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "id": "user-sam",
+      "email": "sam@spoilifly.local",
+      "passwordHash": "pbkdf2$120000$30d4953b72d2bbeade65b81aa9715e84$0448be867757af0fd79b8e291c6b6e5f9ee058c43a5708edf2b68364b830e07aa972ae00afdf48598fd7faba89ff84bee3d16b510a565d2454d4744b143c7bbe",
+      "role": "user",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "id": "user-jade",
+      "email": "jade@spoilifly.local",
+      "passwordHash": "pbkdf2$120000$30d4953b72d2bbeade65b81aa9715e84$0448be867757af0fd79b8e291c6b6e5f9ee058c43a5708edf2b68364b830e07aa972ae00afdf48598fd7faba89ff84bee3d16b510a565d2454d4744b143c7bbe",
+      "role": "user",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "id": "user-nora",
+      "email": "nora@spoilifly.local",
+      "passwordHash": "pbkdf2$120000$30d4953b72d2bbeade65b81aa9715e84$0448be867757af0fd79b8e291c6b6e5f9ee058c43a5708edf2b68364b830e07aa972ae00afdf48598fd7faba89ff84bee3d16b510a565d2454d4744b143c7bbe",
+      "role": "user",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "id": "user-yanis",
+      "email": "yanis@spoilifly.local",
+      "passwordHash": "pbkdf2$120000$30d4953b72d2bbeade65b81aa9715e84$0448be867757af0fd79b8e291c6b6e5f9ee058c43a5708edf2b68364b830e07aa972ae00afdf48598fd7faba89ff84bee3d16b510a565d2454d4744b143c7bbe",
+      "role": "user",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
       "id": "user-5c8331b0-1c12-4b0c-9ace-6faf4acb32bd",
       "email": "marylou.martinez2005@gmail.com",
       "passwordHash": "pbkdf2$120000$892d6dda77c340cf37b4827ac4aa44cd$256e4544c394d9565d7a381e2c565d2cfbdda719846fa5a809a99eb1262585ad549519f0a04572eda4beb36fa838d35c2649fbfae27d91d8c84c30ffc48d1809",
       "role": "user",
       "createdAt": "2026-03-28T13:43:47.048Z",
       "updatedAt": "2026-03-28T13:43:47.048Z"
+    },
+    {
+      "id": "user-6be5a8db-8962-4eed-be1a-ae84dcf2a097",
+      "email": "martinez.marylou2005@gmail.com",
+      "passwordHash": "pbkdf2$120000$6cf8c35d4c4fb006837ad0629b82de6e$f758b6d3879ce734975116abeee6f9512d10164cbe9fb8e6abff588c9c8c9971d0e100cae27a845a51068d3a0f63d630d2fb6c74ef19b6b2f06cb143d5cd2dac",
+      "role": "user",
+      "createdAt": "2026-04-13T08:29:01.320Z",
+      "updatedAt": "2026-04-13T08:29:01.320Z"
     }
   ],
   "profiles": [
@@ -59,12 +115,68 @@
       "updatedAt": "2026-03-13T09:00:00.000Z"
     },
     {
+      "userId": "user-ava",
+      "displayName": "Ava Theorist",
+      "avatarUrl": null,
+      "bio": "Cherche les indices caches avant tout le monde.",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "userId": "user-milo",
+      "displayName": "Milo Ending",
+      "avatarUrl": null,
+      "bio": "Fan de fins alternatives et de twists impossibles.",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "userId": "user-sam",
+      "displayName": "Sam Recap",
+      "avatarUrl": null,
+      "bio": "Resume les arcs narratifs sans perdre les details importants.",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "userId": "user-jade",
+      "displayName": "Jade Mystery",
+      "avatarUrl": null,
+      "bio": "Suit surtout les thrillers et les theories de complot.",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "userId": "user-nora",
+      "displayName": "Nora Anime",
+      "avatarUrl": null,
+      "bio": "Anime, manga et predictions d'arcs finaux.",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
+      "userId": "user-yanis",
+      "displayName": "Yanis Lore",
+      "avatarUrl": null,
+      "bio": "Garde une timeline complete des univers etendus.",
+      "createdAt": "2026-03-13T09:00:00.000Z",
+      "updatedAt": "2026-03-13T09:00:00.000Z"
+    },
+    {
       "userId": "user-5c8331b0-1c12-4b0c-9ace-6faf4acb32bd",
       "displayName": "mmartinez",
       "avatarUrl": null,
       "bio": "",
       "createdAt": "2026-03-28T13:43:47.048Z",
       "updatedAt": "2026-03-28T13:43:47.048Z"
+    },
+    {
+      "userId": "user-6be5a8db-8962-4eed-be1a-ae84dcf2a097",
+      "displayName": "admin",
+      "avatarUrl": null,
+      "bio": "",
+      "createdAt": "2026-04-13T08:29:01.320Z",
+      "updatedAt": "2026-04-13T08:29:01.320Z"
     }
   ],
   "works": [

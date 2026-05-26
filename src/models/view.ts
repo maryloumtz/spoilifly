@@ -104,6 +104,12 @@ export interface ProfilePayload {
   purchases: PurchaseHistoryItem[];
 }
 
+export type UserDirectoryItem = SessionUser;
+
+export interface UsersPayload {
+  users: UserDirectoryItem[];
+}
+
 export interface CreatorSpoilerView extends Pick<SpoilItem, "id" | "title" | "teaser" | "priceCents" | "status" | "createdAt"> {
   workTitle: string;
   level: SpoilLevel;

@@ -7,7 +7,13 @@ import type {
   WalletEntry,
 } from "@/models/domain";
 import type { MeetingInput, MessageInput, PublishSpoilerInput } from "@/models/forms";
-import type { ConversationView, CreatorDashboardView, MeetingView, MessagesPayload } from "@/models/view";
+import type {
+  ConversationView,
+  CreatorDashboardView,
+  MeetingView,
+  MessagesPayload,
+  UsersPayload,
+} from "@/models/view";
 import { mutateDatabase, readDatabase } from "@/services/server/db";
 import { createId, nowIso, sanitizeMultilineText, slugify } from "@/services/server/utils";
 import { validateMeeting, validateMessage, validatePublishSpoiler } from "@/services/server/validators";
@@ -150,6 +156,16 @@ export async function getMessagesForUser(userId: string): Promise<MessagesPayloa
     .sort((left, right) => left.createdAt.localeCompare(right.createdAt));
 
   return { conversations, messages };
+}
+
+export async function getUsersDirectory(currentUserId: string): Promise<UsersPayload> {
+  const db = await readDatabase();
+  const users = db.users
+    .filter((entry) => entry.id !== currentUserId)
+    .map((entry) => toSessionUser(db, entry.id))
+    .sort((left, right) => left.displayName.localeCompare(right.displayName));
+
+  return { users };
 }
 
 export async function sendDirectMessage(user: SessionUser, input: MessageInput) {
